@@ -1,0 +1,23 @@
+/*
+ * Theme Name: <%= name %>
+ * Description: Starter Theme to use with Timber
+ * Author: Upstatement and <%= author %>.
+ * Version: <%= version %>
+ * License: <%= license %>
+*/
+
+/* If you want to configure your own Bootstrap variables,
+ * uncomment the three lines below, create a file in
+ * "static/variables" called "_bootstrap.scss" (or however
+ * you want to structure your variables) that is a copy of
+ * "static/bower_components/bootstrap/scss/variables" but
+ * has " !default" removed from every line.  Yeoman doesn't
+ * provide an easy way to do this so you're on your own!
+*/
+//@import "../bower_components/bootstrap/scss/functions";
+//@import "../bower_components/bootstrap/scss/variables";
+//@import "../bower_components/bootstrap/scss/mixins";
+
+//@import "variables/bootstrap";
+
+@import "../bower_components/bootstrap/scss/bootstrap.scss";

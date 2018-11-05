@@ -1,0 +1,14 @@
+{
+	"name": "generator-shivermetimbers",
+	"version": "0.1.0",
+	"description": "Builds a WordPress starter theme for use with ACF Pro and Timber plus has SASS preprocessing and Javascript linting, concatenation, and minification.",
+	"files": [
+		"generators"
+	],
+	"keywords": [
+		"yeoman-generator"
+	],
+	"dependencies": {
+		"yeoman-generator": "^1.0.0"
+	}
+}

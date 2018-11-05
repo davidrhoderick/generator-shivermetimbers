@@ -1,0 +1,20 @@
+{
+  "name": "<%= name %>",
+  "authors": [
+    "<%= author %> <<%= email %>>"
+  ],
+  "description": "",
+  "main": "index.php",
+  "license": "<%= license %>",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.3.1"
+  }
+}
