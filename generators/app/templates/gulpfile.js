@@ -1,13 +1,19 @@
-var gulp = require('gulp'),
-    sass = require('gulp-sass'),
-    include = require('gulp-include'),
+var gulp        = require('gulp'),
+    sass        = require('gulp-sass'),
+    include     = require('gulp-include'),
     browserSync = require('browser-sync').create(),
-    jshint = require('gulp-jshint'),
-    minify = require('gulp-minify');
+    jshint      = require('gulp-jshint'),
+    minify      = require('gulp-minify'),
+    sassLint    = require('gulp-sass-lint'),
+    notify      = require('gulp-notify');
 
 gulp.task('sass', function(){
   return gulp.src('static/scss/style.scss')
     .pipe(sass())
+      .on('error', notify)
+    .pipe(sassLint({
+      files: { ignore: 'static/bower_components/**/*.scss' }
+    }))
     .pipe(gulp.dest('./'))
     .pipe(browserSync.stream());
 });
@@ -15,7 +21,7 @@ gulp.task('sass', function(){
 gulp.task('js', function(){
   return gulp.src('static/js/site.js')
     .pipe(include())
-      .on('error', console.log)
+      .on('error', notify)
     .pipe(jshint.reporter('default'))
     .pipe(minify({
       ext:{
