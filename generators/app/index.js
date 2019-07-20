@@ -66,6 +66,7 @@ module.exports = class extends Generator {
     }]);
 
     this.answers.themesafe = this.answers.themename.replace(/\s+/g, '-').toLowerCase();
+    this.answers.functionsafe = this.answers.themename.replace(/\s|[0-9]/g, '');
 
     switch(this.answers.bower) {
       case 'bootstrap':
@@ -102,8 +103,8 @@ module.exports = class extends Generator {
 
   install() {
     var themeDirectory = 'wp-content/themes/' + this.answers.themesafe;
-  	this.spawnCommandSync('git', ['clone', '-b', 'master', 'https://github.com/wp-premium/advanced-custom-fields-pro.git', 'wp-content/plugins/advanced-custom-fields-pro']); // doesn't allow updates!
-  	this.spawnCommandSync('git', ['clone', '-b', 'master', 'https://github.com/timber/timber.git', 'wp-content/plugins/timber']); // not working!
+  	// this.spawnCommandSync('git', ['clone', '-b', 'master', 'https://github.com/wp-premium/advanced-custom-fields-pro.git', 'wp-content/plugins/advanced-custom-fields-pro']); // doesn't allow updates!
+  	// this.spawnCommandSync('git', ['clone', '-b', 'master', 'https://github.com/timber/timber.git', 'wp-content/plugins/timber']); // not working!
   	this.spawnCommandSync('git', ['clone', '-b', 'master', 'https://github.com/timber/starter-theme.git', themeDirectory]);
 
     this.fs.copyTpl(
@@ -135,6 +136,25 @@ module.exports = class extends Generator {
     );
 
     this.fs.copyTpl(
+      this.templatePath('functions.php'),
+      this.destinationPath(themeDirectory + '/functions.php'),
+      {
+        themename   : this.answers.themename,
+        version     : this.answers.version,
+        repository  : this.answers.repository,
+        functionsafe: this.answers.functionsafe
+      }
+    );
+
+    this.fs.copyTpl(
+      this.templatePath('template.gitignore'),
+      this.destinationPath('.gitignore'),
+      {
+        themesafe: this.answers.themesafe
+      }
+    );
+
+    this.fs.copyTpl(
       this.templatePath('.bowerrc'),
       this.destinationPath(themeDirectory + '/.bowerrc'));
 
@@ -142,6 +162,9 @@ module.exports = class extends Generator {
       this.templatePath('gulpfile.js'),
       this.destinationPath(themeDirectory + '/gulpfile.js'),
       { proxy: this.answers.proxy });
+
+    this.fs.delete(themeDirectory + '/.git');
+    this.fs.delete(themeDirectory + '/.gitignore');
 
     var workingDirectory = process.cwd() + '/' + themeDirectory;
     process.chdir(workingDirectory);
@@ -163,6 +186,7 @@ module.exports = class extends Generator {
   }
 
   end() {
+    this.log(chalk.bold.red('\nPlease install Timber and Advanced Custom Fields Pro plugins now and start coding!\n'));
     this.spawnCommand('gulp');
   }
 };

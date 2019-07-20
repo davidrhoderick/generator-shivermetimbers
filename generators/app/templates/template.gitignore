@@ -1,0 +1,6 @@
+wp-content/themes/<%= themesafe %>/node_modules/
+wp-content/themes/<%= themesafe %>/static/bower_components/
+wp-content/uploads/
+.yo-rc.json
+wp-config*
+!wp-config-sample.php
