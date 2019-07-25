@@ -20,9 +20,12 @@ Type `yo shivermetimbers` and you should be prompted for most of the settings.  
 
 ## To Do
 
-* Implement testing
-* Implement copying of variables file for Bootstrap and proper set up
-* Implement copying of settings file for Foundation Sites and proper set up
-* Use optimized functions.php for Timber that strips unnecessary emoticons and demo code etc. (maybe as an option)
-* Replace "TimberSite" in functions PHP with a safe theme name
-* Update screenshot
+* Add sourcemaps and minified CSS compilation.
+* Add proper Javascript error handling.
+* Replace site variables in wp-config.php.
+* Implement testing.
+* Implement copying of variables file for Bootstrap and proper set up.
+* Implement copying of settings file for Foundation Sites and proper set up.
+* Update screenshot.
+* ~~Use optimized functions.php for Timber that strips unnecessary emoticons and demo code etc. (maybe as an option).~~
+* ~~Replace "TimberSite" in functions PHP with a safe theme name.~~
