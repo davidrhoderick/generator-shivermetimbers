@@ -135,16 +135,16 @@ module.exports = class extends Generator {
       }
     );
 
-    this.fs.copyTpl(
-      this.templatePath('functions.php'),
-      this.destinationPath(themeDirectory + '/functions.php'),
-      {
-        themename   : this.answers.themename,
-        version     : this.answers.version,
-        repository  : this.answers.repository,
-        functionsafe: this.answers.functionsafe
-      }
-    );
+    // this.fs.copyTpl(
+    //   this.templatePath('functions.php'),
+    //   this.destinationPath(themeDirectory + '/functions.php'),
+    //   {
+    //     themename   : this.answers.themename,
+    //     version     : this.answers.version,
+    //     repository  : this.answers.repository,
+    //     functionsafe: this.answers.functionsafe
+    //   }
+    // );
 
     this.fs.copyTpl(
       this.templatePath('template.gitignore'),
