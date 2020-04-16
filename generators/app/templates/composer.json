@@ -32,16 +32,10 @@
     }
   ],
   "require": {
-    "wppackagist-plugin/classic-editor": "*",
     "timber/timber": "1.*",
     "advanced-custom-fields/advanced-custom-fields-pro": "*"
   },
   "require-dev": {
     "phpunit/phpunit": "5.7.16|6.*"
-  },
-  "extra": {
-    "installer-paths": {
-      "vendor/{$name}/": ["type:wordpress-plugin"]
-    }
   }
 }
