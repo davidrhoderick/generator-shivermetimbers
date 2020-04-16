@@ -11,7 +11,7 @@ module.exports = class extends Generator {
       type   : 'input',
       name   : 'themename',
       message: 'Your theme name',
-      default: 'Timber Starter Theme'
+      default: 'Shiver Me Timbers Theme'
     }, {
       type   : 'input',
       name   : 'version',
@@ -21,7 +21,7 @@ module.exports = class extends Generator {
       type   : 'input',
       name   : 'repository',
       message: 'Your theme\'s repository',
-      default: 'https://github.com/timber/starter-theme.git' // Default to current folder name
+      default: 'https://github.com/davidrhoderick/shivermetimbers-theme.git' // Default to current folder name
     }, {
       type   : 'input',
       name   : 'author',
@@ -60,6 +60,10 @@ module.exports = class extends Generator {
           value: 'empty'
         }]
       }, {
+      type   : 'input',
+      name   : 'acfprokey',
+      message: 'Your ACF Pro license key'
+    }, {
       type   : 'input',
       name   : 'proxy',
       message: 'Your site\'s proxy server'
@@ -103,9 +107,15 @@ module.exports = class extends Generator {
 
   install() {
     var themeDirectory = 'wp-content/themes/' + this.answers.themesafe;
-  	// this.spawnCommandSync('git', ['clone', '-b', 'master', 'https://github.com/wp-premium/advanced-custom-fields-pro.git', 'wp-content/plugins/advanced-custom-fields-pro']); // doesn't allow updates!
-  	// this.spawnCommandSync('git', ['clone', '-b', 'master', 'https://github.com/timber/timber.git', 'wp-content/plugins/timber']); // not working!
-  	this.spawnCommandSync('git', ['clone', '-b', 'master', 'https://github.com/timber/starter-theme.git', themeDirectory]);
+    this.spawnCommandSync('git', ['clone', '-b', 'master', 'https://github.com/davidrhoderick/shivermetimbers-theme.git', themeDirectory]);
+    
+    this.fs.copyTpl(
+      this.templatePath('composer.json'),
+      this.destinationPath(themeDirectory + '/composer.json'),
+      {
+        acfprokey : this.answers.acfprokey
+      }
+    );
 
     this.fs.copyTpl(
       this.templatePath('package.json'),
@@ -135,16 +145,16 @@ module.exports = class extends Generator {
       }
     );
 
-    // this.fs.copyTpl(
-    //   this.templatePath('functions.php'),
-    //   this.destinationPath(themeDirectory + '/functions.php'),
-    //   {
-    //     themename   : this.answers.themename,
-    //     version     : this.answers.version,
-    //     repository  : this.answers.repository,
-    //     functionsafe: this.answers.functionsafe
-    //   }
-    // );
+    this.fs.copyTpl(
+      this.templatePath('functions.php'),
+      this.destinationPath(themeDirectory + '/functions.php'),
+      {
+        themename   : this.answers.themename,
+        version     : this.answers.version,
+        repository  : this.answers.repository,
+        functionsafe: this.answers.functionsafe
+      }
+    );
 
     this.fs.copyTpl(
       this.templatePath('template.gitignore'),
@@ -186,7 +196,8 @@ module.exports = class extends Generator {
   }
 
   end() {
-    this.log(chalk.bold.red('\nPlease install Timber and Advanced Custom Fields Pro plugins now and start coding!\n'));
-    this.spawnCommand('gulp');
+    this.spawnCommandSync('composer', ['install', '--ignore-platform-reqs']);
+    // this.log(chalk.bold.red('\nPlease install Timber and Advanced Custom Fields Pro plugins now and start coding!\n'));
+    this.spawnCommandSync('gulp');
   }
 };
