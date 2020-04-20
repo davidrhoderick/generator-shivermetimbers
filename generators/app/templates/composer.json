@@ -1,0 +1,41 @@
+{
+  "name": "davidrhoderick/shivermetimbers-theme",
+  "description": "Arrrr, this be a theme to start yuh off on yer travels!",
+  "type":"wordpress-theme",
+  "minimum-stability" : "stable",
+  "authors": [
+    {
+      "email": "david@artlyitcalmedia.com",
+      "name": "davidrhoderick"
+    }  
+  ],
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://wpackagist.org"
+    },
+    {
+      "type": "package",
+      "package": {
+        "name": "advanced-custom-fields/advanced-custom-fields-pro",
+        "version": "5.8.9",
+        "type": "library",
+        "dist": {
+          "type": "zip",
+          "url": "https://connect.advancedcustomfields.com/index.php?a=download&p=pro&k=<%= acfprokey %>&t=5.8.9"
+        },
+        "require": {
+          "composer/installers": "^1.4",
+          "ffraenz/private-composer-installer": "^4.0"
+        }
+      }
+    }
+  ],
+  "require": {
+    "timber/timber": "1.*",
+    "advanced-custom-fields/advanced-custom-fields-pro": "*"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "5.7.16|6.*"
+  }
+}

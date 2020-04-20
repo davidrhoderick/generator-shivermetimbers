@@ -1,6 +1,6 @@
 {
 	"name": "generator-shivermetimbers",
-	"version": "0.2.1",
+	"version": "2.0.0",
 	"repository": "https://github.com/davidrhoderick/generator-shivermetimbers/tree/master",
 	"description": "Builds a WordPress starter theme for use with ACF Pro and Timber plus has SASS preprocessing and Javascript linting, concatenation, and minification.",
 	"files": [
