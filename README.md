@@ -12,9 +12,9 @@ The latest version also includes a couple configuration options for installed de
 
 ## CHANGELOG/Note about versions
 
-### Or why you may only want to use 0.1.1 and not 2.0.0
+### Or why you may only want to use 0.1.1 and not 2.0.1
 
-Version 2.0.0 was published April 20th, 2020.  It includes some changes to the scaffolding that may not be desireable:
+Version 2.0.1 was published April 20th, 2020.  It includes some changes to the scaffolding that may not be desireable:
 
 * It installs within the theme ACF Pro (you provide a key during installation for it to work) via Composer.  This may be a hassle and you may not be able to update it without using Composer.
 * It installs within the theme Timber via Composer, this may be better than using the plugin but updating may not work.
